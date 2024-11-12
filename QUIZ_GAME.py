@@ -55,7 +55,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Rest van je Streamlit code voor de quiz...
+# Check of quiz gestart is
+if "quiz_started" not in st.session_state:
+    st.session_state.quiz_started = False
 
 # Functie voor het startmenu
 def start_menu():
@@ -73,7 +75,9 @@ def start_menu():
         """
     )
     start = st.button("🚀 Start de Quiz", key="start_button")
-    return start
+    if start:
+        st.session_state.quiz_started = True  # Vlag om aan te geven dat de quiz gestart is
+    
 # Functie om de quizvragen een voor een te tonen
 def quiz():
     vragen = [
@@ -104,9 +108,8 @@ def quiz():
         {"vraag": "Welke is niet waar: 1=Ik verzamelde vroeger sigarettenpeuken, 2=Ik eet het plastic dat rond kaas hangt, 3=Tot mijn 17e dacht ik dat de radio het echt over vallende sterren had in plaats van flitspalen.", "antwoord": "1"}
     ]
     
-    # Instellingen voor de score
-    score = 0
-    penalties = 0
+    score = st.session_state.get("score", 0)
+    penalties = st.session_state.get("penalties", 0)
     totaal_vragen = len(vragen)
     huidige_vraag_index = st.session_state.get("vraag_index", 0)
 
@@ -117,49 +120,40 @@ def quiz():
 
         antwoord = st.text_input("Jouw antwoord:", key=f"antwoord_{huidige_vraag_index}")
         
-        # Ga naar de volgende vraag
         if st.button("Volgende"):
             if antwoord.strip().lower() == vraag_info['antwoord']:
-                score += 4
+                st.session_state.score += 4
             else:
-                penalties += 1
+                st.session_state.penalties += 1
             st.session_state.vraag_index = huidige_vraag_index + 1
-            st.session_state.score = score
-            st.session_state.penalties = penalties
             st.experimental_rerun()
     else:
-        # Toon de resultaten
         toon_resultaat(st.session_state.score, st.session_state.penalties, totaal_vragen)
+
 # Functie voor de eindresultaten
 def toon_resultaat(score, penalties, totaal_vragen):
     st.markdown("<div class='title'>🎉 Je Quiz Resultaten 🎉</div>", unsafe_allow_html=True)
-    eindscore = max(0, score - (penalties * 2))  # Eindscore berekenen
+    eindscore = max(0, score - (penalties * 2))
 
     st.write(f"Je hebt **{score // 4} van de {totaal_vragen} vragen** correct beantwoord.")
     st.write(f"Je eindscore is: **{eindscore}%**")
 
-    # Dynamische feedback op basis van score
     if eindscore <= 50:
-        st.markdown("<div class='subtitle'>😢 Motje, wa is da veur iet, ik kos men schup ier af jom! Kzen il teleurgesteld in a. Ik wil da gij is goe nadenkt over wa gij ier just in gank e gezet!</div>", unsafe_allow_html=True)
-        st.balloons()
+        st.markdown("<div class='subtitle'>😢 Slechte score! Probeer het nog eens!</div>", unsafe_allow_html=True)
     elif 50 < eindscore <= 65:
-        st.markdown("<div class='subtitle'>🤔 Bwa wete cava wel, mor daar kan kik geen ei mee bakke ze bruur!</div>", unsafe_allow_html=True)
-        st.snow()
+        st.markdown("<div class='subtitle'>🤔 Goed geprobeerd! Nog iets beter kan wel!</div>", unsafe_allow_html=True)
     else:
-        st.markdown("<div class='subtitle'>❤️ INSHALLAG! Ik kus men twiej polle me a, wete da. Kom ier dak a een bees geef!!</div>", unsafe_allow_html=True)
-        st.snow()
+        st.markdown("<div class='subtitle'>❤️ Uitstekend! Je kent me goed!</div>", unsafe_allow_html=True)
 
-    # Knop om opnieuw te spelen
     if st.button("Opnieuw Spelen"):
+        st.session_state.quiz_started = False
         st.session_state.vraag_index = 0
         st.session_state.score = 0
         st.session_state.penalties = 0
         st.experimental_rerun()
-# Start de quiz vanuit het startmenu
-if "vraag_index" not in st.session_state:
-    st.session_state.vraag_index = 0
-    st.session_state.score = 0
-    st.session_state.penalties = 0
 
-if start_menu():
+# Start de quiz vanuit het startmenu of ga verder met de quiz als deze al gestart is
+if not st.session_state.quiz_started:
+    start_menu()
+else:
     quiz()
