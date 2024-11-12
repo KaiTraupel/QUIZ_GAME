@@ -7,15 +7,12 @@ st.set_page_config(page_title="KaiHarde Quiz Game", page_icon="🎉", layout="ce
 st.markdown(
     f"""
     <style>
-    /* Achtergrondafbeelding toepassen op html en body */
     html, body, .stApp {{
         background: url("https://i.imgur.com/OvK6DFY.png");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
     }}
-
-    /* Stijl voor de titel */
     .title {{
         font-size: 3em; 
         color: #FFD700;
@@ -23,8 +20,6 @@ st.markdown(
         font-weight: bold;
         font-family: 'Raleway', sans-serif;
     }}
-
-    /* Stijl voor subtitels */
     .subtitle {{
         font-size: 2em;
         color: #000000;
@@ -32,8 +27,6 @@ st.markdown(
         font-weight: bold;
         font-family: 'Raleway', sans-serif;
     }}
-
-    /* Stijl voor vragen */
     .question {{
         font-size: 2em;
         color: #FFD700;
@@ -42,22 +35,20 @@ st.markdown(
         padding: 10px;
         text-align: center;
     }}
-
-    /* Stijl voor knoppen */
-    .button {{
-        background-color: #FF6F61;
-        color: white;
-        font-size: 1.2em;
-        font-family: 'Raleway', sans-serif;
-    }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Check of quiz gestart is
+# Initialiseer sessievariabelen
 if "quiz_started" not in st.session_state:
     st.session_state.quiz_started = False
+if "score" not in st.session_state:
+    st.session_state.score = 0
+if "penalties" not in st.session_state:
+    st.session_state.penalties = 0
+if "vraag_index" not in st.session_state:
+    st.session_state.vraag_index = 0
 
 # Functie voor het startmenu
 def start_menu():
@@ -108,10 +99,8 @@ def quiz():
         {"vraag": "Welke is niet waar: 1=Ik verzamelde vroeger sigarettenpeuken, 2=Ik eet het plastic dat rond kaas hangt, 3=Tot mijn 17e dacht ik dat de radio het echt over vallende sterren had in plaats van flitspalen.", "antwoord": "1"}
     ]
     
-    score = st.session_state.get("score", 0)
-    penalties = st.session_state.get("penalties", 0)
     totaal_vragen = len(vragen)
-    huidige_vraag_index = st.session_state.get("vraag_index", 0)
+    huidige_vraag_index = st.session_state.vraag_index
 
     if huidige_vraag_index < totaal_vragen:
         vraag_info = vragen[huidige_vraag_index]
