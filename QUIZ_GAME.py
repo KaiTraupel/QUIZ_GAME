@@ -9,8 +9,8 @@ st.markdown(
     /* Voeg Google Fonts toe */
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&family=Raleway:wght@400;700&display=swap');
 
-    .stApp {{
-        background: url("https://i.imgur.com/OvK6DFY.png"); /* Vervang door jouw Imgur-afbeeldings-URL */
+    html, body, .stApp {{
+        background: url("https://i.imgur.com/OvK6DFY.png");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
