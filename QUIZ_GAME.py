@@ -17,7 +17,7 @@ st.markdown(
 
     /* Stijl voor de titel */
     .title {{
-        font-size: 6em; 
+        font-size: 3em; 
         color: #FFD700;
         text-align: center;
         font-weight: bold;
@@ -26,7 +26,7 @@ st.markdown(
 
     /* Stijl voor subtitels */
     .subtitle {{
-        font-size: 3em;
+        font-size: 2em;
         color: #000000;
         text-align: center;
         font-weight: bold;
@@ -35,7 +35,7 @@ st.markdown(
 
     /* Stijl voor vragen */
     .question {{
-        font-size: 3em;
+        font-size: 2em;
         color: #FFD700;
         font-weight: bold;
         font-family: 'Raleway', sans-serif;
