@@ -77,7 +77,7 @@ def start_menu():
 # Functie om de quizvragen een voor een te tonen
 def quiz():
     vragen = [
-        {"vraag": "Geef het volgende gerecht een score op 10: gehakt met kriek", "antwoord": "5"},
+        {"vraag": "Met het volgende gerecht trekt oep niks: ja / nee: gehakt met kriek", "antwoord": "nee"},
         {"vraag": "Geef de eerste letter van de naam die mijn kat had.", "antwoord": "s"},
         {"vraag": "Geef de afkorting van mijn studierichting in kleine letters.", "antwoord": "iot"},
         {"vraag": "Wat is mijn lievelingsdier?", "antwoord": "pinguin"},
