@@ -17,17 +17,17 @@ st.markdown(
 
     /* Stijl voor de titel */
     .title {{
-        font-size: 3em; 
-        color: #FF6F61;
+        font-size: 6em; 
+        color: #FFD700;
         text-align: center;
         font-weight: bold;
-        font-family: 'Pacifico', cursive;
+        font-family: 'Raleway', sans-serif;
     }}
 
     /* Stijl voor subtitels */
     .subtitle {{
-        font-size: 1.5em;
-        color: #4C72B0;
+        font-size: 3em;
+        color: #000000;
         text-align: center;
         font-weight: bold;
         font-family: 'Raleway', sans-serif;
@@ -35,10 +35,10 @@ st.markdown(
 
     /* Stijl voor vragen */
     .question {{
-        font-size: 1.2em;
-        color: #2B8EAD;
+        font-size: 3em;
+        color: #FFD700;
         font-weight: bold;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Raleway', sans-serif;
         padding: 10px;
         text-align: center;
     }}
@@ -48,7 +48,7 @@ st.markdown(
         background-color: #FF6F61;
         color: white;
         font-size: 1.2em;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Raleway', sans-serif;
     }}
     </style>
     """,
