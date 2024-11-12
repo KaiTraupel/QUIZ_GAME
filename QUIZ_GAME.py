@@ -1,52 +1,62 @@
 import streamlit as st
 import time
 
-# Instellingen voor de kleurrijke stijl
+# Instellingen voor de kleurrijke stijl en achtergrondafbeelding
 st.set_page_config(page_title="KaiHarde Quiz Game", page_icon="🎉", layout="centered")
-st.markdown(
-    """
-    <style>
-    /* Voeg Google Fonts toe */
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&family=Raleway:wght@400;700&display=swap');
 
+st.markdown(
+    f"""
+    <style>
+    /* Achtergrondafbeelding toepassen op html en body */
     html, body, .stApp {{
         background: url("https://i.imgur.com/OvK6DFY.png");
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
     }}
-    
-    .title {
-        font-size: 5em; 
+
+    /* Stijl voor de titel */
+    .title {{
+        font-size: 3em; 
         color: #FF6F61;
         text-align: center;
         font-weight: bold;
-        font-family: 'Raleway', sans-serif;
-    }
-    .subtitle {
-        font-size: 2.5em;
-        color: #2B8EAD;
+        font-family: 'Pacifico', cursive;
+    }}
+
+    /* Stijl voor subtitels */
+    .subtitle {{
+        font-size: 1.5em;
+        color: #4C72B0;
         text-align: center;
         font-weight: bold;
         font-family: 'Raleway', sans-serif;
-    }
-    .question {
-        font-size: 2em;
+    }}
+
+    /* Stijl voor vragen */
+    .question {{
+        font-size: 1.2em;
         color: #2B8EAD;
         font-weight: bold;
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Poppins', sans-serif;
         padding: 10px;
         text-align: center;
-    }
-    .button {
+    }}
+
+    /* Stijl voor knoppen */
+    .button {{
         background-color: #FF6F61;
         color: white;
         font-size: 1.2em;
-    }
+        font-family: 'Poppins', sans-serif;
+    }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
+# Rest van je Streamlit code voor de quiz...
+
 # Functie voor het startmenu
 def start_menu():
     st.markdown("<div class='title'>🎉 Welkom bij de KaiHarde Quiz! 🎉</div>", unsafe_allow_html=True)
