@@ -114,10 +114,10 @@ def quiz():
                 st.session_state.score += 4
             else:
                 st.session_state.penalties += 1
-            st.session_state.vraag_index = huidige_vraag_index + 1
-            st.experimental_rerun()
+            st.session_state.vraag_index += 1  # Ga naar de volgende vraag
     else:
         toon_resultaat(st.session_state.score, st.session_state.penalties, totaal_vragen)
+
 
 # Functie voor de eindresultaten
 def toon_resultaat(score, penalties, totaal_vragen):
